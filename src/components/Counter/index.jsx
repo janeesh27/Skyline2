@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from "react";
 
-function Timer() {
-  const [seconds, setSeconds] = useState(0);
-  const [minutes, setMinutes] = useState(10);
+function Timer({ onTimerEnd }) {
+  const [seconds, setSeconds] = useState(
+    parseInt(localStorage.getItem("seconds")) || 0
+  );
+  const [minutes, setMinutes] = useState(
+    parseInt(localStorage.getItem("minutes")) || 10
+  );
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -11,7 +15,7 @@ function Timer() {
       } else {
         if (minutes === 0) {
           clearInterval(interval);
-          // Timer has ended, you can add your logic here
+          onTimerEnd(); // Timer has ended, you can add your logic here
           alert("Timer has ended!");
         } else {
           setSeconds(59);
@@ -21,6 +25,11 @@ function Timer() {
     }, 1000);
 
     return () => clearInterval(interval);
+  }, [seconds, minutes]);
+
+  useEffect(() => {
+    localStorage.setItem("seconds", seconds.toString());
+    localStorage.setItem("minutes", minutes.toString());
   }, [seconds, minutes]);
 
   return (

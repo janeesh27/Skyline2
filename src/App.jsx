@@ -7,6 +7,7 @@ import Counter from "./components/Counter";
 
 function App() {
   const [password, setPassword] = useState("");
+  const [isTimeExpired, setIsTimeExpired] = useState(false);
   const inputHandler = (e) => {
     setPassword(e.target.value);
   };
@@ -23,15 +24,25 @@ function App() {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    if (password === "skyline") {
+    if (password === "skyline" && !isTimeExpired) {
       setLoginStatus(true);
     } else {
-      alert("Login Failed, Please enter correct password");
+      alert(
+        isTimeExpired
+          ? "Time Exhausted"
+          : "Login Failed, Please enter correct password"
+      );
     }
   };
 
   const exitLab = () => {
     setLoginStatus(false);
+  };
+
+  const handleTimerEnd = () => {
+    setIsTimeExpired(true);
+    setLoginStatus(false);
+    alert("Time has expired!");
   };
 
   return (
@@ -64,7 +75,7 @@ function App() {
                     transition={{ delay: 1 }}
                     className="text-[rgb(0,255,255)] text-[44px] font-bold border-[rgb(0,255,255)] border-[2px] rounded-lg py-2 px-4"
                   >
-                    <Counter />
+                    <Counter onTimerEnd={handleTimerEnd} />
                   </motion.div>
                 </div>
                 <motion.div

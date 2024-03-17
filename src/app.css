@@ -1,0 +1,8 @@
+.input {
+  color: rgb(0, 255, 255);
+  background-color: black;
+  outline-color: rgb(0, 255, 255);
+  box-shadow: -3px -3px 15px rgb(0, 255, 255);
+  transition: 0.1s;
+  transition-property: box-shadow;
+}

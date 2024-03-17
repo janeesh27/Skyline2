@@ -1,0 +1,24 @@
+.button {
+  text-transform: uppercase;
+  border-radius: 8px;
+  font-size: 17px;
+  font-weight: 500;
+
+  text-shadow: none;
+
+  cursor: pointer;
+  box-shadow: transparent;
+  border: 1px solid #ffffff80;
+  transition: 0.5s ease;
+  user-select: none;
+}
+
+#btn:hover,
+:focus {
+  color: #ffffff;
+  background: rgb(0, 255, 255);
+  border: 1px solid rgb(0, 255, 255);
+  text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 20px #ffffff;
+  box-shadow: 0 0 5px rgb(0, 255, 255), 0 0 20px rgb(0, 255, 255),
+    0 0 50px rgb(0, 255, 255), 0 0 100px rgb(0, 255, 255);
+}
